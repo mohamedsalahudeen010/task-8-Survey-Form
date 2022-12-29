@@ -240,12 +240,31 @@ function gender() {
 }
 
 function selectFood(){
-  if(food1.checked && food2.checked){
-    let res = `${document.getElementById("biriyani").value} +
-    ${document.getElementById("parotta").value}
-    `;
-    return res;
+ 
+    let res = document.getElementById("biriyani").checked;
+  
+    let res1 = document.getElementById("parotta").checked;
+
+    let res2 = document.getElementById("mandhi").checked;
+   
+    console.log(res,res1,res2)
+   
+  var selectedFoodData={
+    biriyani:res,
+    parotta:res1,
+    mandhi:res2
   }
+  var selectedFood="";
+  
+  Object.values(selectedFoodData).filter((b,i)=>{
+    if(!b){return false}
+    else{
+      selectedFood+=" "+Object.keys(selectedFoodData)[i];
+    }
+  })
+ console.log(selectedFood)
+  
+  return selectedFood;
 }
 
 form1.addEventListener("submit", function (event) {
@@ -256,11 +275,11 @@ form1.addEventListener("submit", function (event) {
   var email=document.getElementById("email").value;
   var address = document.getElementById("address").value;
   var pincode = document.getElementById("pincode").value;
-  var food = document.getElementById("food-form").value;
+  var food=selectFood();
   var state = document.getElementById("state").value;
   var country = document.getElementById("country").value;
 
-  console.log(fname,lname,address,pincode,food,state,country);
+  console.log(fname,lname,address,pincode,state,country);
 
   function createTable(tagname, attrname, attrvalue) {
     var table = document.createElement(tagname);
