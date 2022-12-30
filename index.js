@@ -17,10 +17,10 @@ function createptag(tagname, attrname, attrvalue, content) {
 
 
 
-function createlabels(tagname, attrname, attrvalue,idname,idvalue,content) {
+function createlabels(tagname, attrname, attrvalue,attrname1,attrvalue1,content) {
   var ele = document.createElement(tagname);
   ele.setAttribute(attrname, attrvalue);
-  ele.setAttribute(idname,idvalue)
+  ele.setAttribute(attrname1,attrvalue1)
   ele.innerHTML = content;
   return ele;
 }
@@ -78,18 +78,18 @@ head1.innerHTML = "Survey Form";
  headDiv.append(head1);
 
 let ParaDiv=createDiv("div","class", "heading-para");
-var paragraph = createptag("p", "id", "description", "This is a survey-form");
+var paragraph = createptag("p", "id", "description", "This is a survey-form Made by DOM, Please enter your details in below form");
 
 ParaDiv.append(paragraph);
 
 let firstNameDiv=createDiv("div","class", "firstNameDiv");
-let firstNamelabel = createlabels("label", "for", "first-name","id","name-label", "Firstname");
+let firstNamelabel = createlabels("label", "for", "first-name","id","fname-label", "Firstname");
 let firstNameinput = createinput("input","type","text","id","first-name","placeholder","Mohamed");
 
  firstNameDiv.append(firstNamelabel,firstNameinput);
 
 let lastNameDiv=createDiv("div","class", "lastNameDiv");
-let lastNamelabel = createlabels("label", "for", "last-name","id","name-label", "Lastname");
+let lastNamelabel = createlabels("label", "for", "last-name","id","lname-label", "Lastname");
 let lastNameinput = createinput("input","type","text","id","last-name","placeholder","Salah");
 
  lastNameDiv.append(lastNamelabel,lastNameinput)
@@ -175,7 +175,27 @@ food3.setAttribute("id", "mandhi");
 food3.setAttribute("value", "Mandhi");
 food3.innerHTML = "Mandhi";
 
-foodForm.append(labelfood1,food1,br12,labelfood2,food2,br13,labelfood3,food3);
+let labelfood4=document.createElement("label");
+labelfood4.setAttribute("for","Fried-rice");
+labelfood4.innerHTML="Fried-rice";
+
+let food4 = document.createElement("input");
+food4.setAttribute("type", "checkbox");
+food4.setAttribute("id", "Fried-rice");
+food4.setAttribute("value", "Fried-rice");
+food4.innerHTML = "Fried-rice";
+
+let labelfood5=document.createElement("label");
+labelfood5.setAttribute("for","pulao");
+labelfood5.innerHTML="Pulao";
+
+let food5 = document.createElement("input");
+food5.setAttribute("type", "checkbox");
+food5.setAttribute("id", "Pulao");
+food5.setAttribute("value", "Pulao");
+food5.innerHTML = "Pulao";
+
+foodForm.append(labelfood1,food1,br12,labelfood2,food2,br13,labelfood3,food3,br10,labelfood4,food4,br16,labelfood5,food5);
 foodDiv.append(foodHead, foodForm)
 
 let addressDiv=createDiv("div","class", "addressDiv");
@@ -203,12 +223,14 @@ let countryinput = createinput("input","type","text","id","country","placeholder
 countryDiv.append(countrylabel,countryinput);
 
 let textAreaDiv=createDiv("div","class", "textareaDiv");
+let ptext=document.createElement("h5");
+ptext.innerText="Enter text here"
 let Createtextarea = document.createElement("textarea");
 Createtextarea.setAttribute("id", "comments");
-Createtextarea.setAttribute("cols", "40");
+Createtextarea.setAttribute("cols", "60");
 Createtextarea.setAttribute("rows", "4");
 
-textAreaDiv.append(Createtextarea);
+textAreaDiv.append(ptext,Createtextarea);
 
 let buttonDiv=createDiv("div","class", "btnDiv");
 var button1 = document.createElement("button");
@@ -222,7 +244,7 @@ buttonDiv.append(button1);
 let container=createDiv("div","class","container","class","form-group")
 
 
-form1.append(headDiv,br1,ParaDiv,br2,firstNameDiv,br3,lastNameDiv,br4,emailDiv,br5,genderDiv,foodDiv,addressDiv,br8,pincodeDiv,br9,stateDiv,br10,countryDiv,br15,buttonDiv,br16,textAreaDiv)
+form1.append(headDiv,br1,ParaDiv,br2,firstNameDiv,lastNameDiv,br4,emailDiv,addressDiv,br3,pincodeDiv,stateDiv,br5,countryDiv,br9,genderDiv,foodDiv,br8,textAreaDiv,br15,buttonDiv)
 container.append(form1)
 document.body.append(container);
 
@@ -246,20 +268,26 @@ function selectFood(){
     let res1 = document.getElementById("parotta").checked;
 
     let res2 = document.getElementById("mandhi").checked;
+
+    let res3 = document.getElementById("Fried-rice").checked;
+
+    let res4 = document.getElementById("Pulao").checked;
    
-    console.log(res,res1,res2)
+    console.log(res,res1,res2,res3,res4)
    
   var selectedFoodData={
     biriyani:res,
     parotta:res1,
-    mandhi:res2
+    mandhi:res2,
+    Friedrice:res3,
+    Pulao:res4
   }
   var selectedFood="";
   
   Object.values(selectedFoodData).filter((b,i)=>{
     if(!b){return false}
     else{
-      selectedFood+=" "+Object.keys(selectedFoodData)[i];
+      selectedFood+=Object.keys(selectedFoodData)[i]+", ";
     }
   })
  console.log(selectedFood)
@@ -267,19 +295,7 @@ function selectFood(){
   return selectedFood;
 }
 
-form1.addEventListener("submit", function (event) {
-  event.preventDefault();
-  
-  var fname = document.getElementById("first-name").value;
-  var lname = document.getElementById("last-name").value;
-  var email=document.getElementById("email").value;
-  var address = document.getElementById("address").value;
-  var pincode = document.getElementById("pincode").value;
-  var food=selectFood();
-  var state = document.getElementById("state").value;
-  var country = document.getElementById("country").value;
 
-  console.log(fname,lname,address,pincode,state,country);
 
   function createTable(tagname, attrname, attrvalue) {
     var table = document.createElement(tagname);
@@ -293,7 +309,8 @@ form1.addEventListener("submit", function (event) {
 
   function createTable1(tagname) {
     var table = document.createElement(tagname);
-
+    table.style.border = "1px solid black";
+    table.style.borderCollapse = "collapse";
     return table;
   }
   function createTable2(tagname, content) {
@@ -321,21 +338,69 @@ form1.addEventListener("submit", function (event) {
 
   var tbody = createTable1("tbody");
   var tr2 = createTable1("tr");
-  var td1 = createTable2("th", fname);
-  var td2 = createTable2("th", lname);
-  var td3 = createTable2("th", email);
-  var td4 = createTable2("th", gender());
-  var td5 = createTable2("th",food);
-  var td6 = createTable2("th", address);
-  var td7 = createTable2("th", pincode);
-  var td8 = createTable2("th", state);
-  var td9 = createTable2("th", country);
+  var td1 = createTable1("th");
+  var td2 = createTable1("th");
+  var td3 = createTable1("th");
+  var td4 = createTable1("th");
+  var td5 = createTable1("th");
+  var td6 = createTable1("th");
+  var td7 = createTable1("th");
+  var td8 = createTable1("th");
+  var td9 = createTable1("th");
 
-  document.getElementById("survey-form").reset();
+  // var td1 = createTable2("th", fname);
+  // var td2 = createTable2("th", lname);
+  // var td3 = createTable2("th", email);
+  // var td4 = createTable2("th", gender());
+  // var td5 = createTable2("th",food);
+  // var td6 = createTable2("th", address);
+  // var td7 = createTable2("th", pincode);
+  // var td8 = createTable2("th", state);
+  // var td9 = createTable2("th", country);
+
+  // document.getElementById("survey-form").reset();
 
   tr2.append(td1, td2, td3, td4, td5, td6, td7, td8,td9);
   tbody.append(tr2);
   table.append(thead, tbody);
-  return document.body.append(table);
+  document.body.append(table);
+
+form1.addEventListener("submit", function (event) {
+  event.preventDefault();
+  
+  var fname = document.getElementById("first-name").value;
+  var lname = document.getElementById("last-name").value;
+  var email=document.getElementById("email").value;
+  var address = document.getElementById("address").value;
+  var pincode = document.getElementById("pincode").value;
+  var food=selectFood();
+  var state = document.getElementById("state").value;
+  var country = document.getElementById("country").value;
+
+  console.log(fname,lname,address,pincode,state,country);
+ 
+  
+ td1.innerHTML=fname;
+ td2.innerHTML=lname;
+ td3.innerHTML=email;
+ td4.innerHTML=gender();
+ td5.innerHTML=food;
+ td6.innerHTML=address;
+ td7.innerHTML=pincode;
+ td8.innerHTML=state;
+ td9.innerHTML=country;
+
+  // var td2 = createTable2("th", lname);
+  // var td3 = createTable2("th", email);
+  // var td4 = createTable2("th", gender());
+  // var td5 = createTable2("th",food);
+  // var td6 = createTable2("th", address);
+  // var td7 = createTable2("th", pincode);
+  // var td8 = createTable2("th", state);
+  // var td9 = createTable2("th", country);
+
+  document.getElementById("survey-form").reset();
+  
+  // return document.body.append(table);
  
 });
