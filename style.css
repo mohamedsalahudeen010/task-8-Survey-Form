@@ -6,75 +6,120 @@ body{
     background-color: rgb(196, 183, 183);
 }
 .container{
-    background-color: mediumpurple;
-    height: 100vh;
+    background-color: rgb(177, 159, 212);
+    height: 83vh;
     width: 80vw;
+    
 }
-.heading{
-    padding: 0%;
-    margin: 0%;
+#title{
+    text-align: left;
+}
+#description{
+    text-align: left; 
 }
 
 .firstNameDiv{
-    margin-top: -30px;
+    display: inline-block;
+    margin-left: 2rem;
+    padding:1rem;
 }
 .lastNameDiv{
-    margin-top: 10px;
+    display: inline-block;
+    margin-left: 25rem;
+    padding:1rem;
+    
 }
 .emailDiv{
-    margin-top: 10px;
-}
-.genderDiv{
-    margin-top: 10px;
-}
-.femaleDiv{
-    padding-top: 20px;
+    display: inline-block;
+    margin-left: 2rem;
+    padding:1rem;
 }
 
-
-.foodDiv{
-    margin-top: 50px;
-   
-}
 .addressDiv{
-    margin-top: 35px;
+    display: inline-block;
+    margin-left: 25rem;
+    padding:1rem;
 }
 .pincodeDiv{
-    margin-top: 10px; 
+    display: inline-block;
+    margin-left: 2rem;
+    padding:1rem;
 }
 .stateDiv{
-    margin-top: 10px; 
+    display: inline-block;
+    margin-left: 25rem;
+    padding:1rem;
 }
 .countryDiv{
-    margin-top: 10px;   
+    display: inline-block;
+    margin-left: 2rem;
+    padding:1rem; 
 }
-#form2{
-text-align: left;
-margin-left: 0px;
+
+
+.genderDiv{
+    position: absolute;
+    display: inline-block;
+    margin-left: 3.5rem;
+     margin-top: 1rem;
 }
+.maleDiv{
+    display: inline-block;
+    margin-left: 0rem;
+    padding:1rem; 
+    position: absolute;
+}
+.maleDiv>input{
+    margin-left: 60px;
+    position: absolute;
+}
+
+.femaleDiv{
+    display: inline-block;
+    margin-left: 5rem;
+    padding:1rem;  
+    position: absolute;
+}
+.femaleDiv>input{
+    margin-left: 70px;
+  
+    position: absolute;
+}
+.foodDiv{
+    display: inline-block;
+    margin-left: 38rem;   
+}
+
+.foodDiv p{
+margin-left: -7rem;
+}
+
+.textareaDiv{
+    position: absolute;
+    display: inline-block;
+    margin-top: -3.5rem;
+    margin-left: 2rem;
+    padding:1rem;
+}
+
 #food1{
     font-size: 10px;
     color: black;
 }
 label{
     margin-left: 10px;
-    margin-top: 5px;
     position: absolute;
 }
 input{
     margin-left: 100px;
-  
     position: absolute;
 }
-#title{
-    text-align: center;
-}
-h3{
-    text-align: center; 
-}
+
+
 #submit{
-    margin-left: 100px;
-    margin-top: 10px;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 5rem;
     width: 100px;
     border: 1px solid black;
     padding-top: 3px;
@@ -83,23 +128,13 @@ h3{
     background-color: whitesmoke;
 }
 
-#male{
-    margin-left: 100px;
-}
-#female{
-    margin-left: 100px;
-}
-#other{
-    margin-left: 104px;
-}
 
+
+td{
+    border: 1px solid black;
+}
 .table{
    margin: 10px auto;
     width: 80vw;
     text-align: center;
-}
-#description{
-    text-align: center;
-    margin: 0%;
-    padding: 0%;
 }
